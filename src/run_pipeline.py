@@ -11,12 +11,12 @@ if __name__ == "__main__":
     try:
         configure_logging()
         config = {
-            "doc_type": os.getenv('RUN_DOC_TYPE', None),
-            "collection_name": os.getenv('COLLECTION_NAME', None),
-            "start_batch_num": int(os.getenv('START_BATCH_NUM', "0")),
-            "pull_elastic": (os.getenv('PULL_ELASTIC', 'both')),
-            "is_html": (os.getenv('IS_HTML', "False") == "True"),
-            "bulk_api": int(os.getenv('BULK_API', "0"))
+            "doc_type": 'ibm_docs',
+            "collection_name": 'hps_ibmdocs_partition',
+            "start_batch_num": 0,
+            "pull_elastic": 'both',
+            "is_html": 'True',
+            "bulk_api": 1
         }
 
         if os.getenv('RUN_DOC_TYPE') is None:
