@@ -1,0 +1,5 @@
+[core]
+    remote = project-data
+['remote "project-data"']
+    url = s3://cos-bucket-snds-mita/
+    endpointurl = https://s3.us-east.cloud-object-storage.appdomain.cloud

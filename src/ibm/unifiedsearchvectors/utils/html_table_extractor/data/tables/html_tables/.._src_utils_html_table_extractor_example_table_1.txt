@@ -1,0 +1,8 @@
+File Path: ../src/utils/html_table_extractor/example.html
+Title: Show more icon
+Page Context: Archived contentArchive date: 2024-02-15This content is no longer being updated or maintained. The content is provided “as is.” Given the rapid evolution of technology, some content, steps, or illustrations may have changed.Linux is increasingly popular in the computer networking/telecommunications 
+Description: 
+Caption: 
+Table Content:
+Network address:: Individual hosts:, 192.168.1.0: 192.168.1.1 to 192.168.1.127
+Network address:: Broadcast address:, 192.168.1.0: 192.168.1.128

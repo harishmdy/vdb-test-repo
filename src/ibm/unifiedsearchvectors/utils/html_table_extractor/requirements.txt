@@ -1,0 +1,18 @@
+# beautifulsoup4==4.12.3
+# pandas==2.2.1
+# PyMuPDF==1.23.26
+# PyMuPDFb==1.23.22
+#PyYAML==6.0.1
+beautifulsoup4
+pandas
+pymupdf
+PyYAML
+ghostscript
+opencv-python
+camelot-py
+lxml
+langchain
+tqdm
+unstructured
+networkx
+sentence-transformers

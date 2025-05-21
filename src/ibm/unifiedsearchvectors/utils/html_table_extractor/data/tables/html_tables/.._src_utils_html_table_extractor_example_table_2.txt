@@ -1,0 +1,12 @@
+File Path: ../src/utils/html_table_extractor/example.html
+Title: Show more icon
+Page Context: Archived contentArchive date: 2024-02-15This content is no longer being updated or maintained. The content is provided “as is.” Given the rapid evolution of technology, some content, steps, or illustrations may have changed.Linux is increasingly popular in the computer networking/telecommunications 
+Description: 
+Caption: 
+Table Content:
+IP address: Network address, Example: 192.168.1.0, Same/unique: Same for all hosts
+IP address: Domain name, Example: www.yourcompanyname.com, Same/unique: Same for all hosts
+IP address: Broadcast address, Example: 192.168.1.128, Same/unique: Same for all hosts
+IP address: Subnet mask, Example: 255.255.255.0, Same/unique: Same for all hosts
+IP address: Hostname, Example: Any valid name, Same/unique: Unique to each host
+IP address: Host addresses, Example: 192.168.1. x, Same/unique: x must be unique to each host

@@ -1,0 +1,172 @@
+{
+    "common": {
+        "fields": {
+            "doc_id": "The auto generated id from milvus",
+            "chunk_num": "As the documents/urls are chunked we assign each chunk an integer.  Chunk_num=1 is the first chunk, etc.",
+            "title": "The title of the url as found in the search index",
+            "description": "The description of the url as found in the search index",
+            "url": "The url (or document id) of the content.  Url together with chunk_num is a unique logical key",
+            "language": "ie \"en\"  Note that \"zz\" is translated to \"en\" for ease of searching",
+            "last_updated": "The timestamp this entry was last processed to be inserted into milvus as the number of ms since the epoch.",
+            "is_entitled": "Indicates whether the document is entitled (True) or not entitled (False). Entitled content is content that is accessed through a paywall",
+            "is_public_ibmentitlement": "Indicates whether the content is public (1) or private (0). Public content means it is not entitled content; Private content means it is entitled content (accessed through a paywall)",
+            "is_essuperuser_ibmentitlement": "Indicates whether the document is flagged as \"essuperuser\" (1) or not (0). At this time, all documents have essuperuser appended to them.",
+            "publish_date": "The date the content was last published as the number of ms since the epoch.",
+            "digital_content_codes": "An array of digital content codes (DCCs) set for this content.  This can be used to filter searches.",
+            "support_level_codes": "An array of support level codes (SLCs) for this content",
+            "sub_scopes": "A sub scope is specific to the Unified Search index and provides traceablity back to the source. ",
+            "dc_type_original": "The metadata that contains the value indicating which content type is used as the container.o.  e.g. CT748 is APAR",
+            "keywords": "Keywords that have been set for this content by the content owners",
+            "content": "The chunked content of the original page or document referenced by url",
+            "doc_vector": "The vector / embedding of the chunked content",
+            "dwcontenttype": "The subcollection type associated with the content; e.g. \"article\"",
+            "main_heading": "The largest header within the content's html page; part of ibm.com search default fields",
+            "ibmdocstype": "Indicates if the document is public as \"public\"",
+            "ibmdocsproduct": "The announcement subtype as found in the search index. For example: \"Customer Section\", \"Unclassified Section\", \"AP Distribution\", etc.",
+            "field_keyword_01": "The product family associated with the content. Usually, the product family is the same as the Digital Content Code (DCC), but sometimes two product families may have the same DCC but different family number",
+            "page": "The page number from the pdf",
+            "is_table": "Boolean value indicating if the chunk is from special table processing code.  If so, then the rows have been re-rewritten to be more sentence style than just words.",
+            "latest_version": "Boolean value indicating if this doc is for the latest version of the product.",
+            "semver_tags": "A specific iteration of a product, indicated by numbers, separated by a period. IBM follows the V.R.M.F (version.release.mod.fix)",
+            "altver_tags": "This specialized field allows for identification of special cases, like SaaS, Continuous Delivery, Long-Term Support, Beta, Entitled, and other values that communicate unique descriptive detail to the end user either as a stand-alone element or in conjunction with a version number.",
+            "mtm_tags": "Machine Type Model (MTM) includes both the 4-digit machine type and the 3-digit model number, serving as the IBM equipment identifier and equivalent to the Product ID.",
+            "build_epoch": "This is the build release numbers, for certain products. It can be a combination of year (YY), quarter (QQ), month (MM), day (DD), or a build number (BBBB). The specific format used depends on the team's release frequency and needs"
+        }
+    },
+    "ibm_redbooks": {
+        "collection": "This collection contains the non-archived Redbooks, Redpapers and other pdf content on the IBM Redbooks site.",
+        "fields": {
+            "doc_type": "Redbook, Redpaper, etc",
+            "form_number": "The redbook id, sourced from the redbooks index meta data",
+            "page_count": "Total pages in the source pdf",
+            "brand": "(DEPRECATED - now defaults to empty string use dcc code instead) Sourced from the redbooks index meta data. This is free form and lacking structure.",
+            "product_primary": "(DEPRECATED - now defaults to empty string use dcc code instead) Sourced from the redbooks index meta data.  This is free form and lacking structure.",
+            "product_secondary": "(DEPRECATED - now defaults to empty string use dcc code instead) Sourced from the redbooks index meta data. This is free form and lacking structure."
+        }
+    },
+    "ibm_docs": {
+        "collection": "This collection contains the most recent version of all the public IBM documentation, currently filtered to English only.  This corresponds to the scope of ibmdocs in the unified search index.",
+        "fields": {
+            "ibmdocskey": "Usually the DCC underscore _version string, field is unstandardized",
+            "scopes": "A scope is specific to the Unified Search index.  This collection currently contains scopes of 'ibmdocs'.  This field can be used to filter if desired."
+        }
+    },
+    "ibm_docs_ent": {
+        "collection": "This collection contains the most recent version of all the entitled IBM documentation, currently filtered to English only.  This corresponds to the scope of ibmdocs in the unified search index.",
+        "fields": {
+            "ibmdocskey": "Usually the DCC underscore _version string, field is unstandardized",
+            "scopes": "A scope is specific to the Unified Search index.  This collection currently contains scopes of 'ibmdocs'.  This field can be used to filter if desired."
+        }
+    },
+    "support_docs": {
+        "collection": "This collection contains the most recent version of all the public IBM support documentation, currently filtered to English only.  This corresponds to the scope of dblue in the unified search index.",
+        "fields": {
+            "scopes": "A scope is specific to the Unified Search index.  This collection currently contains scopes of 'dblue'.  This field can be used to filter if desired.",
+            "ts_document_types": "The label associated with a doctype category set for this content",
+            "ts_software_versions": "Any specific version values of the product associated with this content. The value 'All Versions' may be specified for some content",
+            "arm_categories": "The product categories set for this asset in IBM Supports Asset Reuse Manager (ARM) collection. This field can be used to filter if desired",
+            "ts_categories": "These are typically either digital_content_code or support_level_codes"
+        }
+    },
+    "support_docs_ent": {
+        "collection": "This collection contains the most recent version of all the entitled IBM support documentation, currently filtered to English only.  This corresponds to the scope of dblue in the unified search index.",
+        "fields": {
+            "scopes": "A scope is specific to the Unified Search index.  This collection currently contains scopes of 'dblue'.  This field can be used to filter if desired.",
+            "ts_document_types": "The label associated with a doctype category set for this content",
+            "ts_software_versions": "Any specific version values of the product associated with this content. The value 'All Versions' may be specified for some content",
+            "arm_categories": "The product categories set for this asset in IBM Supports Asset Reuse Manager (ARM) collection. This field can be used to filter if desired",
+            "ts_categories": "These are typically either digital_content_code or support_level_codes"
+        }
+    },
+    "support_docs_int": {
+        "collection": "This collection contains the most recent version of all the internal IBM support documentation, currently filtered to English only.  This corresponds to the scope of dblue in the unified search index.",
+        "fields": {
+            "scopes": "A scope is specific to the Unified Search index.  This collection currently contains scopes of 'dblue'.  This field can be used to filter if desired.",
+            "ts_document_types": "The label associated with a doctype category set for this content",
+            "ts_software_versions": "Any specific version values of the product associated with this content. The value 'All Versions' may be specified for some content",
+            "arm_categories": "The product categories set for this asset in IBM Supports Asset Reuse Manager (ARM) collection. This field can be used to filter if desired",
+            "ts_categories": "These are typically either digital_content_code or support_level_codes"
+        }
+    },
+    "cloud_docs": {
+        "collection": "This collection contains the most recent version of all the IBM Cloud documentation, currently filtered to English only.  This corresponds to the scope of cldocs in the unified search index.",
+        "fields": {
+            "scopes": "A scope is specific to the Unified Search index.  This collection currently contains scopes of 'cldocs'.  This field can be used to filter if desired."
+        }
+    },
+    "sales_announcements": {
+        "collection": "This collection contains the most recent version of all Sales Manuals and Announcements documentation, currently filtered to English only.  This corresponds to the scopes of announcements, salesmanuals, and oix in the unified search index.",
+        "fields": {
+            "scopes": "A scope is specific to the Unified Search index.  This collection currently contains scopes of 'announcements', 'salesmanuals', and 'oix'.  This field can be used to filter if desired."
+        }
+    },
+    "marketing_docs": {
+        "collection": "This collection contains marketing documents tagged with scopes of 'ibm', 'casestudies', 'products', 'thinkhub', and sub-scopes of 'marketing-products', 'marketing-consulting', 'marketing-services', 'marketing-industries', 'marketing-topics', 'marketing-events', 'marketing-garage', 'marketing-solution', 'marketing-product-family', 'marketing-product-overview', 'blogs', and 'insights' in the unified search index.",
+        "fields": {
+            "scopes": "A scope is specific to the Unified Search index. This collection currently contains scopes of 'ibm', 'casestudies', 'thinkhub'. 'thinkhub' scope contains ibm.com/think pages. This field can be used to filter if desired.",
+            "ut_10": "UT Level 10 associated with the URL",
+            "ut_10_desc": "UT Level 10 description associated with the URL",
+            "ut_15": "UT Level 15 associated with the URL",
+            "ut_15_desc": "UT Level 15 description associated with the URL",
+            "ut_17": "UT Level 17 associated with the URL",
+            "ut_17_desc": "UT Level 17 associated with the URL",
+            "ut_20": "UT Level 20 associated with the URL",
+            "ut_20_desc": "UT Level 20 description associated with the URL",
+            "ut_30": "UT Level 30 associated with the URL",
+            "ut_30_desc": "UT Level 30 description associated with the URL"
+        }
+    },
+    "general_technical_docs": {
+        "collection": "This collection contains general technical documents tagged with imputed scopes of 'research', 'security intelligence', 'dw' (developer), 'community', 'ppd' (partner), 'swlicensing', 'ppdsolution' (partner), and 'partnerplus' in the unified search index.",
+        "fields": {
+            "imputed_scope": "A scope derived from either the URL pattern (securityintelligence.com or community.ibm.com), the 'mhscope' category (research), or the 'scope' ('dw', 'ppd', 'swlicensing', or 'ppdsolution'). This field can be used to filter if desired.",
+            "scopes": "A scope is specific to the Unified Search index. This collection currently contains scopes of 'ibm', 'dw', 'community', 'ppd', 'swlicensing', 'communitytest','ppdsolution', and 'partnerplus'. This field can be used to filter if desired."
+        }
+    },
+    "redhat": {
+        "collection": "This collection contains documents associated with Red Hat products. Currently, the collection only contains Red Hat OpenShift products",
+        "fields": {
+            "title": "The title associated with the URL",
+            "description": "The description associated with the title",
+            "page_name": "The name of the page. A title can be composed of multiple pages.",
+            "product": "The full name of the Red Hat product. It can be used to filter",
+            "version": "The version of the product associated with the content"
+        }
+    },
+    "ibm_training": {
+        "collection": "This collection contains the most recent version of Training documentation, filtered to English only. This corresponds to documents tagged with the scope 'training' in the IBM Unified Search Index",
+        "fields": {
+            "scopes": "A scope is specific to the Unified Search index.  This collection currently contains scopes of 'training'.  This field can be used to filter if desired.",
+            "keywords": "Catalog search words",
+            "product_name": "This is the owning product code for a course",
+            "itscoursecode": "WW course code",
+            "itstrainingtype": "New field to replace other delivery types; recommended delivery method",
+            "its_solutions": "",
+            "its_delivery": "New field to replace other delivery types; recommended delivery method. Modality values include Classroom, Instructor-led Online, Self-paced online with labs (SPVC). Self-paced (WBT)",
+            "itsjobrole": "This field identifies the job role associated with the course, normally the professional group.",
+            "itsprimaryexamseries": "",
+            "itsduration": "Duration of the course",
+            "itsnewupdate": "Flag identifier containing N or U, which lists the course as new or updated.",
+            "itscertpath": "",
+            "its_badgetype": "",
+            "its_productgroup": "",
+            "its_skilllevel": "Explains to the customer the skill level of the course.",
+            "its_badgeissuer": "",
+            "its_cost": "This field indicates of the course is free - 0 = No, 1 = Yes",
+            "ratings": ""
+        }
+    },
+    "partner_plus_ent": {
+        "collection": "This collection contains documents associated with Partner Plus.",
+        "fields": {
+            "imputed_scope": "A scope derived from either the URL pattern, the 'mhscope' category, or the 'scope'. This field can be used to filter if desired.",
+            "scopes": "A scope is specific to the Unified Search index. This collection currently contains scopes of 'partnerplus'. This field can be used to filter if desired."
+        }
+    },
+    "ibm_design": {
+        "collection": "This collection contains ibm.com/design pages. This is a BETA collection, meaning this collection is subject to change.",
+        "fields": {
+            "scopes": "A scope is specific to the Unified Search index. This collection currently contains scopes of 'design'."
+        }
+    }
+}

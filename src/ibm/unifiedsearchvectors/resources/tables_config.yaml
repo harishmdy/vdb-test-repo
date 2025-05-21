@@ -1,0 +1,30 @@
+{ paths: {
+      #html_data: "/data/", # Either a parent folder from which to include all html's, or a list of html's.
+      html_data:
+        [
+          "../src/ibm/unifiedsearchvectors/utils/html_table_extractor/example.html",
+        ],
+      #pdf_data: "/data/", # Either a parent folder from which to include all pdf's, or a list of pdf's.
+      pdf_data:
+        [
+          "./example_files/REDP-5247-00_IBM_FlashSystem_V9000_and_VMware_Best_Practices_Guide.pdf",
+        ],
+      output_folder: "../src/ibm/unifiedsearchvectors/utils/html_table_extractor/data/tables/", # Output to output_folder + html_tables, pdf_tables respectively.
+      error_file: "data/tables/missed_files.txt", # File to keep track of corrupted/unopenable files.
+    }, pdf: { captions: [
+          'Table \d+(-\d*)?\s+[A-Z0-9][^\n]*',
+          'Table \d+\.\s+[A-Z][^\n]*',
+        ], metadata: [ # Regex patterns (here for e.g.: Table 1.1 | Table 1.) PS: Single-Quotes required
+          "Title",
+          "Keywords",
+          "Descriptive Sentences",
+          "File Path",
+          "Page",
+          "Caption",
+        ] }, html: { tags: ["table", "pre"], metadata: [ # Which "metadata" to include # Table tags to search for
+          "File Path",
+          "Title",
+          "Page Context",
+          "Description",
+          "Caption",
+        ] } } # Which "metadata" to include

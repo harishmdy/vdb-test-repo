@@ -1,0 +1,97 @@
+##################################################################################
+# pre-commit configuration file
+# Go to https://pre-commit.com for more information
+# Go to https://pre-commit.com/hooks.html for info on pre-commit hooks supported
+##################################################################################
+
+default_stages: [commit, manual]
+
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v3.4.0
+      hooks:
+          - id: check-yaml # Checks yaml files for parseable syntax.
+            exclude: "^tests/"
+          - id: check-json # Checks json files for parseable syntax.
+            exclude: "^tests/"
+          - id: check-toml # Checks toml file syntax
+            exclude: "^tests/"
+          - id: check-added-large-files
+          - id: check-case-conflict # Check for files that would conflict in case-insensitive filesystems
+          - id: check-merge-conflict # Check for files that contain merge conflict strings.
+          - id: debug-statements # Check for debugger imports and py37+ `breakpoint()` calls in python source.
+            exclude: "^tests/"
+
+    # Type check
+    #- repo: https://github.com/pre-commit/mirrors-mypy
+    #  rev: v1.2.0
+    #  hooks:
+    #    - id: mypy
+    #      args: [ --allow-redefinition, --ignore-missing-imports ]
+    #      exclude: |
+    #        (?x)(
+    #          ^docs/|
+    #          ^tests/|
+    #          ^notebooks/|
+    #          ^src/
+    #        )
+    #      additional_dependencies: ['types-requests']
+    
+    # Linter check
+    - repo: https://github.com/charliermarsh/ruff-pre-commit
+      # Ruff version.
+      rev: 'v0.0.260'
+      hooks:
+        - id: ruff
+          exclude: ^src/
+
+    - repo: https://github.com/ibm/detect-secrets
+      rev: 0.13.1+ibm.61.dss
+      hooks:
+        - id: detect-secrets # pragma: whitelist secret
+          # Add options for detect-secrets-hook binary. You can run `detect-secrets-hook --help` to list out all possible options.
+          # You may also run `pre-commit run detect-secrets` to preview the scan result.
+          # when "--baseline" without "--use-all-plugins", pre-commit scan with just plugins in baseline file
+          # when "--baseline" with "--use-all-plugins", pre-commit scan with all available plugins
+          # add "--fail-on-unaudited" to fail pre-commit for unaudited potential secrets
+          args: [--baseline, .secrets.baseline, --use-all-plugins]
+          exclude: poetry.lock
+
+    - repo: local
+      hooks:
+        - id: black
+          name: "Black"
+          language: system
+          types: [ file, python ]
+          exclude: ^docs/|^tests/|^models/|^configs/|^src/
+          entry: black
+
+        # - id: isort
+        #   args: ["--profile", "black"]
+        #   name: "Sort imports"
+        #   language: system
+        #   types: [ file, python ]
+        #   exclude: ^docs/|^tests/|^models/|^configs/
+        #   entry: isort
+
+        # - id: bandit
+        #   name: "Bandit security check"
+        #   language: system
+        #   types: [ file, python ]
+        #   exclude: ^tests/
+        #   entry: bandit -ll
+    - repo: https://github.com/ibm/detect-secrets
+      # If you desire to use a specific version of detect-secrets, you can replace `master` with other git revisions such as branch, tag or commit sha.
+      # You are encouraged to use static refs such as tags, instead of branch name
+      #
+      # Running "pre-commit autoupdate" automatically updates rev to latest tag
+      rev: 0.13.1+ibm.61.dss
+      hooks:
+        - id: detect-secrets # pragma: whitelist secret
+          # Add options for detect-secrets-hook binary. You can run `detect-secrets-hook --help` to list out all possible options.
+          # You may also run `pre-commit run detect-secrets` to preview the scan result.
+          # when "--baseline" without "--use-all-plugins", pre-commit scan with just plugins in baseline file
+          # when "--baseline" with "--use-all-plugins", pre-commit scan with all available plugins
+          # add "--fail-on-unaudited" to fail pre-commit for unaudited potential secrets
+          args: [--baseline, .secrets.baseline, --use-all-plugins]
+

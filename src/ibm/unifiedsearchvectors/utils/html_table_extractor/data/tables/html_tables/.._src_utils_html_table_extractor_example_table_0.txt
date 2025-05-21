@@ -1,0 +1,9 @@
+File Path: ../src/utils/html_table_extractor/example.html
+Title: Show more icon
+Page Context: Archived contentArchive date: 2024-02-15This content is no longer being updated or maintained. The content is provided “as is.” Given the rapid evolution of technology, some content, steps, or illustrations may have changed.Linux is increasingly popular in the computer networking/telecommunications 
+Description: 
+Caption: 
+Table Content:
+Address range: 10.0.0.0 - 10.255.255.255.255, Subnet mask: 255.0.0.0, Provides: 1 class A LAN, Addresses per LAN: 16777216
+Address range: 172.16.0.0 - 172.31.255.255, Subnet mask: 255.255.0.0, Provides: 16 class B LANs, Addresses per LAN: 65536
+Address range: 192.168.0.0 - 192.168.255.255, Subnet mask: 255.255.255.0, Provides: 256 class C LANs, Addresses per LAN: 256
